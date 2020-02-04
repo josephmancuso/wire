@@ -3,9 +3,9 @@
 from masonite.view import View
 from masonite.request import Request
 from masonite.controllers import Controller
+from .Component import Component
 
-
-class WelcomeController(Controller):
+class WelcomeController(Controller, Component):
     """Controller For Welcoming The User."""
 
     def show(self, view: View, request: Request):

@@ -2,7 +2,32 @@
 
 from masonite.routes import Get, Post, Match
 
+def ComponentRoute(component, controller):
+    return Match(['Get', 'POST'], f'/livewire/props/{component}', f'{controller}@show')
+
+
+
+
 ROUTES = [
-    Match(['Get', 'POST'], '/?any', 'LivewireController@show'),
-    Match(['Get', 'POST'], '/livewire/money/?any', 'CountController@show')
+    Get('/', 'WelcomeController@show'),
+    ComponentRoute('props', 'LivewireController'),
+    ComponentRoute('money', 'CountController'),
+    ComponentRoute('name', 'NameController'),
+
+
+
+
+
+
+
+
+    # Match(['Get', 'POST'], '/livewire/money', 'CountController@show')
 ]
+
+
+
+
+
+
+
+

@@ -1,6 +1,5 @@
 <div>
-    <button wire:click="increment">+</button>
-    <button wire:click="decrement">-</button>
+    <button method="increment" @click="handle($event)">Count</button>
 
-    <span>{{ count }}</span>
+    <div x-html="props.count"></div>
 </div>

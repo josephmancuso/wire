@@ -10,49 +10,17 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v1.9.7/dist/alpine.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
     {% block css %}{% endblock %}
-    <style>
-        [wire\:loading] {
-            display: none;
-        }
-        [wire\:offline] {
-            display: none;
-        }
-        [wire\:dirty]:not(textarea):not(input):not(select) {
-            display: none;
-        }
-    </style>
 </head>
 
 <body>
 
-    <div class="flex-center position-ref full-height">
+    {{ component('name') }}
 
-        <div id="wire">
-            <button wire:click="increment">+</button>
-            <button wire:click="decrement">-</button>
-        
-            <span>{{ count }}</span>
-        </div>
-
-    </div>
-
-    <script src="/static/js/livewire.js"></script>
-
-    <script>
-        window.livewire = new Livewire();
-        document.addEventListener('DOMContentLoaded', function () {
-            console.log('livewire started')
-            window.livewire.start();
-        });
-    </script>
-    <script>
-        document.addEventListener('livewire:available', () => {
-            window.livewire = new Livewire();
-            window.livewire.start();
-        })
-    </script>
 </body>
+
+
 
 </html>
