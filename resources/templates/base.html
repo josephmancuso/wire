@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %} {{ config('application.name', 'Masonite') }} {% endblock %}</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+
+    {% block css %}{% endblock %}
+    <style>
+        [wire\:loading] {
+            display: none;
+        }
+        [wire\:offline] {
+            display: none;
+        }
+        [wire\:dirty]:not(textarea):not(input):not(select) {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="flex-center position-ref full-height">
+
+        <div id="wire">
+            <button wire:click="increment">+</button>
+            <button wire:click="decrement">-</button>
+        
+            <span>{{ count }}</span>
+        </div>
+
+    </div>
+
+    <script src="/static/js/livewire.js"></script>
+
+    <script>
+        window.livewire = new Livewire();
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('livewire started')
+            window.livewire.start();
+        });
+    </script>
+    <script>
+        document.addEventListener('livewire:available', () => {
+            window.livewire = new Livewire();
+            window.livewire.start();
+        })
+    </script>
+</body>
+
+</html>
