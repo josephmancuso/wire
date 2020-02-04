@@ -73,3 +73,9 @@
 2020-02-04 18:15:31 - ERROR - AttributeError in /Users/rothco/Python/livewire/app/http/controllers/Component.py on line 76
 2020-02-04 18:17:18 - ERROR - AttributeError in /Users/rothco/Python/livewire/app/http/controllers/Component.py on line 65
 2020-02-04 18:36:46 - ERROR - AttributeError in /Users/rothco/Python/livewire/app/http/controllers/NameController.py on line 19
+2020-02-04 19:08:24 - ERROR - NameError in /Users/rothco/Python/livewire/app/http/controllers/NameController.py on line 22
+2020-02-04 19:11:22 - ERROR - AttributeError in /Users/rothco/Python/livewire/app/http/controllers/Component.py on line 22
+2020-02-04 19:11:42 - ERROR - AttributeError in /Users/rothco/Python/livewire/app/http/controllers/Component.py on line 23
+2020-02-04 19:11:56 - ERROR - AttributeError in /Users/rothco/Python/livewire/app/http/controllers/Component.py on line 22
+2020-02-04 19:12:16 - ERROR - AttributeError in /Users/rothco/Python/livewire/app/http/controllers/Component.py on line 23
+2020-02-04 19:12:27 - ERROR - AttributeError in /Users/rothco/Python/livewire/app/http/controllers/Component.py on line 90

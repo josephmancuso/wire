@@ -25,8 +25,9 @@ class Component:
         self.view.share({'component': self.helper})
     
     def helper(self, component):
-        template = self.view.render(f'livewire.components.{component}', self.get_livewire_properties()).rendered_template
+        template = self.view.render(f'livewire.{component}', self.get_livewire_properties()).rendered_template
         template = template.replace("<div>", f"""<div  x-component='{component}' v-html="props.html" x-data='{component}()' x-init='init()'>""")
+        template = template.replace("method=", "@click='handle($event)' method=")
         template += """
     <script>
         function METHOD_NAME() {
@@ -75,6 +76,7 @@ class Component:
         # props.update(self.get_livewire_properties())
         print('ajax rendering', template, 'with', props )
         x = self.view.render(template, props).rendered_template
+        x = x.replace("method=", "@click='handle($event)' method=")
         self.request.header('X-Livewire', json.dumps(self.props))
         print('template is', x)
         return x

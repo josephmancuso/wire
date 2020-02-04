@@ -10,14 +10,14 @@ from .Component import Component
 class NameController(Component):
     """NameController Controller Class."""
 
+    props = {
+        "name": "Joe",
+        "count": 1
+    }
+
     def __init__(self):
         from wsgi import container
-        self.props = {
-            "name": "Joe",
-            "count": 1
-        }
-        self.request = container.make('Request')
-        self.props.update(self.request.input('data', {}))
+
         container.resolve(super().__init__)
 
     def show(self):
