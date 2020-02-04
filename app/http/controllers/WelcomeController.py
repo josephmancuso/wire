@@ -8,6 +8,8 @@ from .Component import Component
 class WelcomeController(Controller, Component):
     """Controller For Welcoming The User."""
 
+    attrs = []
+
     def show(self, view: View, request: Request):
         """Show the welcome page.
 
@@ -18,4 +20,4 @@ class WelcomeController(Controller, Component):
         Returns:
             masonite.view.View -- The Masonite view class.
         """
-        return view.render('welcome')
+        return view.render('base')

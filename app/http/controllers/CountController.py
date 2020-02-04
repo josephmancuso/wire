@@ -13,6 +13,13 @@ class CountController(Component):
 
     attrs = ['count']
 
+
+    def __init__(self):
+        from wsgi import container
+        self.count = 20
+        # self.count = 10
+        container.resolve(super().__init__)
+
     def show(self):
         return self.render('livewire.count')
 

@@ -10,21 +10,17 @@ from .Component import Component
 class NameController(Component):
     """NameController Controller Class."""
 
-    props = {
-        "name": "Joe",
-        "count": 1
-    }
+    attrs = ['name', 'count']
 
     def __init__(self):
         from wsgi import container
+        self.name = "Joe"
+        self.count = 10
         container.resolve(super().__init__)
 
     def show(self):
-        print('running show method')
         return self.render('livewire.name')
 
     def increment(self):
-        print('props is', self.props)
-        print('incrementing')
 
-        self.props['count'] += 1
+        self.count += 1

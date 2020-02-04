@@ -16,9 +16,12 @@
 </head>
 
 <body>
-    <div x-component='count' x-data='count()' x-init='init()'>
+
+
+    {{ component('name') }}
+    {{ component('count') }}
+    <!-- <div x-component='count' x-data='count()' x-init='init()'>
         <div x-html="html"></div>
-        <button method="increment" @click='handle($event)'>Count</button>
     </div>
     <script>
         function count() {
@@ -49,7 +52,7 @@
                 },
             }
         }
-    </script>
+    </script> -->
 
 </body>
 
