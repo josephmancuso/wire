@@ -11,7 +11,7 @@ def ComponentRoute(component, controller):
 ROUTES = [
     Get('/', 'WelcomeController@show'),
     ComponentRoute('props', 'LivewireController'),
-    ComponentRoute('money', 'CountController'),
+    ComponentRoute('count', 'CountController'),
     ComponentRoute('name', 'NameController'),
 
 

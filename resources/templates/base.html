@@ -16,8 +16,40 @@
 </head>
 
 <body>
-
-    {{ component('name') }}
+    <div x-component='count' x-data='count()' x-init='init()'>
+        <div x-html="html"></div>
+        <button method="increment" @click='handle($event)'>Count</button>
+    </div>
+    <script>
+        function count() {
+            return {
+                component: null,
+                html: '',
+                props: {
+                    'count': 1
+                },
+                init() {
+                    console.log('calling init again')
+                    this.component = this.$el.getAttribute('x-component')
+                    axios.post('/livewire/props/'+this.component, {'data': this.props})
+                        .then(response => {
+                            this.html = response.data
+                            this.props = JSON.parse(response.headers['x-livewire'])
+                        })
+                    console.log(this.props)
+                },
+                handle(event) {
+                    console.log(this.props)
+                    let method = event.target.getAttribute('method')
+                    axios.post('/livewire/props/'+this.component, {'data': this.props, method: method})
+                    .then(response => {
+                            this.html = response.data
+                            this.props = JSON.parse(response.headers['x-livewire'])
+                        })
+                },
+            }
+        }
+    </script>
 
 </body>
 

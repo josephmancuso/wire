@@ -8,7 +8,6 @@ import copy
 class Component:
 
 
-    
     def __init__(self, request: Request, view: View):
         """LivewireController Initializer
 
@@ -16,26 +15,21 @@ class Component:
             request {masonite.request.Request} -- The Masonite Request class.
         """
         self.request = request
-        print('values', self.request.all())
-        self.cls_properties = (name for name in dir(self) if not name.startswith('_'))
-        self.properties = self.request.input('data', {})
-        self.properties.update(self.get_livewire_properties())
-        print('properties??', self.properties)
         self.view = view
+        self.props = self.request.input('data', {})
+        # self.properties.update(self.get_livewire_properties())
         self.view.share({'component': self.helper})
     
     def helper(self, component):
         template = self.view.render(f'livewire.{component}', self.get_livewire_properties()).rendered_template
-        template = template.replace("<div>", f"""<div  x-component='{component}' v-html="props.html" x-data='{component}()' x-init='init()'>""")
+        template = template.replace("<div>", f"""<div x-component='{component}' v-html="props.html" x-data='{component}()' x-init='init()'>""")
         template = template.replace("method=", "@click='handle($event)' method=")
         template += """
     <script>
         function METHOD_NAME() {
             return {
                 component: null,
-                props: {
-                    html: '',
-                },
+                props: {},
                 init() {
                     this.component = this.$el.getAttribute('x-component')
                     axios.post('/livewire/props/'+this.component, {'data': this.props})
@@ -52,6 +46,7 @@ class Component:
                         .then(response => {
                             this.$el.innerHTML = response.data
                             this.props = JSON.parse(response.headers['x-livewire'])
+                            console.log('and we are at', this.props)
                         })
                 },
             }
@@ -69,15 +64,18 @@ class Component:
         print(self)
         if hasattr(self, self.request.input('method', '')):
             getattr(self, self.request.input('method'))()
+
+        # Modified state now
         props = {}
+        for prop in self.attrs:
+            props.update({prop: self.__dict__.get(prop)})
+
         print('props1', props)
-        props.update(self.props)
-        print('props2', props)
-        # props.update(self.get_livewire_properties())
-        print('ajax rendering', template, 'with', props )
+        print('ajax rendering', template, 'with', props)
         x = self.view.render(template, props).rendered_template
         x = x.replace("method=", "@click='handle($event)' method=")
-        self.request.header('X-Livewire', json.dumps(self.props))
+        self.request.cookie('livewire:props', json.dumps(props))
+        self.request.header('X-Livewire', json.dumps(props))
         print('template is', x)
         return x
 

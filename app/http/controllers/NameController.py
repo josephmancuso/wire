@@ -17,7 +17,6 @@ class NameController(Component):
 
     def __init__(self):
         from wsgi import container
-
         container.resolve(super().__init__)
 
     def show(self):

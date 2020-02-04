@@ -79,3 +79,11 @@
 2020-02-04 19:11:56 - ERROR - AttributeError in /Users/rothco/Python/livewire/app/http/controllers/Component.py on line 22
 2020-02-04 19:12:16 - ERROR - AttributeError in /Users/rothco/Python/livewire/app/http/controllers/Component.py on line 23
 2020-02-04 19:12:27 - ERROR - AttributeError in /Users/rothco/Python/livewire/app/http/controllers/Component.py on line 90
+2020-02-04 20:36:37 - ERROR - AttributeError in /Users/rothco/Python/livewire/app/http/controllers/Component.py on line 76
+2020-02-04 20:37:39 - ERROR - AttributeError in /Users/rothco/Python/livewire/app/http/controllers/Component.py on line 74
+2020-02-04 20:38:05 - ERROR - AttributeError in /Users/rothco/Python/livewire/app/http/controllers/Component.py on line 75
+2020-02-04 20:38:20 - ERROR - AttributeError in /Users/rothco/Python/livewire/app/http/controllers/Component.py on line 75
+2020-02-04 20:38:56 - ERROR - AttributeError in /Users/rothco/Python/livewire/app/http/controllers/Component.py on line 75
+2020-02-04 20:43:45 - ERROR - ContainerError in /Users/rothco/Python/livewire/bootstrap/start.py on line 38
+2020-02-04 20:43:52 - ERROR - ContainerError in /Users/rothco/Python/livewire/bootstrap/start.py on line 38
+2020-02-04 20:52:24 - ERROR - TemplateNotFound in /Users/rothco/Python/livewire/app/http/controllers/Component.py on line 72

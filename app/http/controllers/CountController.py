@@ -11,13 +11,15 @@ from .Component import Component
 class CountController(Component):
     """Count Component"""
 
-    money = 10
+    attrs = ['count']
 
     def show(self):
-        return self.render('base')
+        return self.render('livewire.count')
 
     def increment(self):
-        self.money += 1
+        print('running count increment','count is', self.count)
+        self.count += 1
+        print('running count increment','count is', self.count)
 
     def decrement(self):
-        self.money -= 1
+        self.count -= 1
