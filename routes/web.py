@@ -13,6 +13,9 @@ ROUTES = [
     ComponentRoute('props', 'LivewireController'),
     ComponentRoute('count', 'CountController'),
     ComponentRoute('name', 'NameController'),
+    ComponentRoute('error', 'AlertController'),
+    ComponentRoute('login', 'LoginComponentController'),
+    ComponentRoute('todo', 'TodoComponentController'),
 
 
 
@@ -31,3 +34,6 @@ ROUTES = [
 
 
 
+
+from masonite.auth import Auth 
+ROUTES += Auth.routes()

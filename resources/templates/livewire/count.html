@@ -1,5 +1,10 @@
-<div>
+<template>
     Count with me: {{ count }}
+</template>
 
+<wire>
     <button method="increment">Increment</button>
-</div>
+    <button method="decrement">Decrement</button>
+    <input x-model="props.count" />
+</wire>
+

@@ -13,20 +13,14 @@ class CountController(Component):
 
     attrs = ['count']
 
-
-    def __init__(self):
-        from wsgi import container
+    def mount(self):
         self.count = 20
-        # self.count = 10
-        container.resolve(super().__init__)
 
     def show(self):
         return self.render('livewire.count')
 
     def increment(self):
-        print('running count increment','count is', self.count)
-        self.count += 1
-        print('running count increment','count is', self.count)
+        self.count = int(self.count) + 1
 
     def decrement(self):
-        self.count -= 1
+        self.count = int(self.count) - 1

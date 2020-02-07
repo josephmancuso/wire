@@ -1,0 +1,36 @@
+<template>
+    <div class="row my-5">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="card rounded-1">
+                        <div class="card-header">
+                            <h5 class="mb-0">Todos</h5>
+                        </div>
+                        <div class="card-body">
+                            <!-- Validation here -->
+                                {% for todo in todos %}
+                                    <div>
+                                        {{ todo.name }} - {{ todo.description }}
+                                    </div>
+                                    <div>
+                                        <button @method="delete" x-send='{"todo_id": {{ todo.id }}}' type="button" class="btn btn-success btn-md">Delete</button>
+                                    </div>
+                                {% endfor %}
+                                <div class="form-group">
+                                    <label for="">name</label>
+                                    <input prop="name" type="text" class="form-control form-control-md rounded-0" name="email"
+                                        value="">
+                                </div>
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <input prop="description" type="text" class="form-control form-control-md rounded-0" name="password">
+                                </div>
+                                <button @method="create" type="button" class="btn btn-success btn-md float-right">Login</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -13,15 +13,21 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v1.9.7/dist/alpine.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
     {% block css %}{% endblock %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.2.0/tailwind.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-
-
-    {{ component('name') }}
-    {{ component('count') }}
+    <div class="flex justify-center w-1/2">
+        {{ component('name') }}
+    </div>
+    
     <!-- <div x-component='count' x-data='count()' x-init='init()'>
         <div x-html="html"></div>
+        <input x-model="props.count"/>
+        Number is <span x-text="props.count"></span>::
+        <button @click="handle($event)" method="increment">Increment</button>
+        <button  @click="handle($event)" method="decrement">Decrement</button>
+        <input x-model="props.count" />
     </div>
     <script>
         function count() {
@@ -34,9 +40,11 @@
                 init() {
                     console.log('calling init again')
                     this.component = this.$el.getAttribute('x-component')
-                    axios.post('/livewire/props/'+this.component, {'data': this.props})
+                    axios.post('/livewire/props/'+this.component, {'data': this.props, method: 'mount'})
                         .then(response => {
                             this.html = response.data
+                            console.log(response)
+                            console.log(response.headers['x-livewire'])
                             this.props = JSON.parse(response.headers['x-livewire'])
                         })
                     console.log(this.props)
