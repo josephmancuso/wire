@@ -19,6 +19,7 @@ jobs:
           mkdir -p /srv/sites/basic 
           cd /srv/sites/basic 
           git clone https://github.com/josephmancuso/wire.git ${{ github.sha }} 
+          shopt -s extglob
           rm -rfv !("${{ github.sha }}")
           cd ${{ github.sha }} 
           python3 -m venv /venvs/basic 
