@@ -16,9 +16,9 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           mkdir -p /srv/sites/basic  # Make the directory if it doesnt exist
-          mkdir -p /srv/sockets
+          mkdir -p /srv/sockets # Make directory where we will store our sockets
           cd /srv/sites/basic # Go to that directory
-          sudo chmod 0777 /srv/sockets
+          sudo chmod -R 0777 /srv/sockets # Make sure nginx has access to the socket directory
           git clone https://github.com/${{ github.repository }}.git ${{ github.sha }} # Clone the current repo
           # fuser -k 8001/tcp # Kill the application already running on 8001 (current production app)
           cd ${{ github.sha }} # Go to the directory we just made (current deployment)
@@ -27,3 +27,6 @@ jobs:
           pip install -r requirements.txt # Install our dependencies
           echo "${{ secrets.ENV }}" >> .env
           set -m; nohup uwsgi --socket /srv/sockets/basic.masoniteproject.com.sock --wsgi-file wsgi.py --chmod-socket=777 &> /dev/null & # run gunicorn as a daemon
+          cd ../
+          shopt -s extglob # enable the command below this one
+          rm -rfv !("${{ github.sha }}") # Delete all directories except for the one we just created (old deployments)
