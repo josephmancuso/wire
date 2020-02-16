@@ -25,4 +25,5 @@ jobs:
           python3 -m venv /venvs/basic # Make our virtual environment if it doesn't exist
           source /venvs/basic/bin/activate # Activate our virtual Environment
           pip install -r requirements.txt # Install our dependencies
+          echo "${{ secrets.ENV }}" >> .env
           set -m; nohup gunicorn wsgi:application -b 127.0.0.1:8001 &> /dev/null & # run gunicorn as a daemon
