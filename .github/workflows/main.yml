@@ -16,7 +16,9 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           mkdir -p /srv/sites/basic  # Make the directory if it doesnt exist
+          mkdir -p /srv/sockets
           cd /srv/sites/basic # Go to that directory
+          sudo chmod 0777 /srv/sockets
           git clone https://github.com/${{ github.repository }}.git ${{ github.sha }} # Clone the current repo
           fuser -k 8001/tcp # Kill the application already running on 8001 (current production app)
           shopt -s extglob # enable the command below this one
@@ -26,4 +28,4 @@ jobs:
           source /venvs/basic/bin/activate # Activate our virtual Environment
           pip install -r requirements.txt # Install our dependencies
           echo "${{ secrets.ENV }}" >> .env
-          set -m; nohup gunicorn wsgi:application -b 127.0.0.1:8001 &> /dev/null & # run gunicorn as a daemon
+          set -m; nohup uwsgi --socket /srv/sockets/basic.masoniteproject.com.sock --wsgi-file wsgi.py --chmod-socket=777 &> /dev/null & # run gunicorn as a daemon
