@@ -26,7 +26,7 @@ jobs:
           source /venvs/basic/bin/activate # Activate our virtual Environment
           pip install -r requirements.txt # Install our dependencies
           echo "${{ secrets.ENV }}" >> .env
-          set -m; nohup uwsgi --socket /srv/sockets/${{ secrets.DOMAIN }}.sock --wsgi-file wsgi.py --chmod-socket=777 &> /dev/null & # run gunicorn as a daemon
+          set -m; nohup uwsgi --socket /srv/sockets/${{ secrets.DOMAIN }}.sock --wsgi-file wsgi.py --chmod-socket=777 --pidfile /srv/sockets/${{ github.sha }}.pid &> /dev/null & # run gunicorn as a daemon
           cd ../
           sleep 5 # Just wait 5 seconds to make sure the socket has enough time to detect the new deployment changes
           shopt -s extglob # enable the command below this one
