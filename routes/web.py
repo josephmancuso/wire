@@ -17,24 +17,7 @@ ROUTES = [
     ComponentRoute('error', 'AlertController'),
     ComponentRoute('login', 'LoginComponentController'),
     ComponentRoute('todo', 'TodoComponentController'),
-
-
-
-
-
-
-
-
-    # Match(['Get', 'POST'], '/livewire/money', 'CountController@show')
 ]
-
-
-
-
-
-
-
-
 
 from masonite.auth import Auth 
 ROUTES += Auth.routes()
