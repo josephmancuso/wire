@@ -74,9 +74,6 @@ class Component:
     #     template = template.replace('template', 'div')
 
     #     template = template.replace('DATA_PROPS', json.dumps(props))
-    #     # print(self)
-    #     print('original rendered props props are',json.dumps(props))
-    #     # print('component rendered template is', template)
     #     return Markup(template)
     
     def redirect(self, route):
@@ -87,10 +84,9 @@ class Component:
         self.set_properties()
         from wsgi import container
 
-        if self.request.has('send'):
+        if self.request.input('send'):
             self.request.request_variables.update(json.loads(self.request.input('send')))
 
-        print(self)
         if hasattr(self, self.request.input('method', '')):
             container.resolve(getattr(self, self.request.input('method')))
 
@@ -99,8 +95,6 @@ class Component:
         for prop in self.attrs:
             props.update({prop: self.__dict__.get(prop)})
 
-        print('props1', props)
-        print('ajax rendering', template, 'with', props)
         x = self.view.render(template, props).rendered_template
         x = x.replace("@method=", "@click='handle($event)' method=")
         x = x.replace("prop='", "x-model.lazy='props.")
@@ -109,7 +103,6 @@ class Component:
         self.request.header('X-Livewire', json.dumps(props))
         x = x.partition("</template>")[:1][0] + "</template>"
         x = x.replace('template', 'div')
-        print('template is', x)
         return x
 
     def set_properties(self):

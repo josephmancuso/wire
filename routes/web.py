@@ -12,6 +12,7 @@ ROUTES = [
     Get('/', 'WelcomeController@show'),
     ComponentRoute('props', 'LivewireController'),
     ComponentRoute('count', 'CountController'),
+    ComponentRoute('money', 'CountController'),
     ComponentRoute('name', 'NameController'),
     ComponentRoute('error', 'AlertController'),
     ComponentRoute('login', 'LoginComponentController'),

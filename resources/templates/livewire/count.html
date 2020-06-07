@@ -3,8 +3,8 @@
 </template>
 
 <wire>
-    <button method="increment">Increment</button>
-    <button method="decrement">Decrement</button>
+    <button @method="increment">Increment</button>
+    <button @method="decrement">Decrement</button>
     <input x-model="props.count" />
 </wire>
 
